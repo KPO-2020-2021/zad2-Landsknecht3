@@ -4,6 +4,7 @@
 
 
 #include "LZespolona.hh"
+#include <iostream>
 
 
 /*!
@@ -29,8 +30,11 @@ struct WyrazenieZesp {
  */
 
 
-void Wyswietl(WyrazenieZesp  WyrZ);
+void wyswietlanie(LZespolona Lz);
 LZespolona Oblicz(WyrazenieZesp  WyrZ);
-void wyswietlanie(LZespolona Skl);
+void Wyswietl(WyrazenieZesp  WyrZ);
+std::ostream& operator << (std::ostream &StrmWy, const LZespolona &Lz);
+std::ostream& operator << (std::ostream &StrmWy, const WyrazenieZesp &WyrZ);
+std::istream& operator >> (std::istream &StrmWe, LZespolona &Lz);
 
 #endif

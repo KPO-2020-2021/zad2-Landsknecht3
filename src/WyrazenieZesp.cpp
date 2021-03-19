@@ -1,25 +1,29 @@
 #include "WyrazenieZesp.hh"
-#include <iostream>
-using namespace std;
+
+
 
 /*
  * Tu nalezy zdefiniowac funkcje, ktorych zapowiedzi znajduja sie
  * w pliku naglowkowym.
  */
-
-void wyswietlanie(LZespolona Skl)
+/*
+* Realizuje wyswietlenie liczby zespolonej
+* Argumenty:
+* Lz - liczba zespolona ktora ma byc wyswietlona
+* Zwraca:
+* Wyswietlenie liczby zespolonej w terminalu
+*/
+void wyswietlanie(LZespolona Lz)
 {
-    cout << "(" << Skl.re;
-    if(Skl.im >= 0)
-    {
-        cout << "+" << Skl.im << "i)";
-    }
-    else
-    {
-        cout << Skl.im << "i)";
-    }
+    std::cout << "(" << Lz.re << std::showpos << Lz.im << std::noshowpos << "i)";
 }
-
+/*
+* Realizuje obliczenia dzialan arytmetycznych na liczbach zespolonych
+* Argumenty:
+* WyrZ - wyrazenie liczb zespolonych ktore ma byc obliczone
+*Zwraca:
+*   Wynik dzialan arytmetycznych na liczbach zespolonych
+*/
 LZespolona Oblicz(WyrazenieZesp WyrZ)
 {
     LZespolona wynik;
@@ -45,36 +49,77 @@ LZespolona Oblicz(WyrazenieZesp WyrZ)
         break;
     }
 }
+/*
+* Realizuje wyswietlenie wyrazenia liczb zespolonych
+* Argumenty:
+* WyrZ - wyrazenie liczb zespolonych ktore ma byc wyswietlone
+* TabSymOp - tablica znakow operatorow arytmetycznych sluzaca do ich wyswietlania
+* Zwraca:
+*   Wyswietlone wyrazenie liczb zespolonych w terminalu
+*/
 void Wyswietl(WyrazenieZesp  WyrZ)
 {
-    cout << "Podaj wynik operacji:\t";
+    const char TabSymOp[] ="+-*/";
+    std::cout << "Podaj wynik operacji:\t";
     wyswietlanie(WyrZ.Arg1);
-    switch (WyrZ.Op)
-    {
-    case 0:
-        cout << " + ";
-        break;
-    case 1:
-        cout << " - ";
-        break;
-    case 2:
-        cout << " * ";
-        break;
-    case 3:
-        cout << " / ";
-        break;
-    default:
-        break;
-    }
+    std::cout << TabSymOp[WyrZ.Op];
     wyswietlanie(WyrZ.Arg2);
-    cout << " = "; cout << endl;
+    std::cout << " = "; std::cout << std::endl;
 }
-bool wczytajiporownaj(LZespolona Wynik)
+
+/*
+* Przeciazenie operatora <<
+wyswietlenie liczby zespolonej
+* Argumenty:
+* Lz - liczba zespolona ktora ma byc wyswietlona
+* Zwraca:
+* Wyswietlenie liczby zespolonej w terminalu
+*/
+std::ostream& operator << (std::ostream &StrmWy, const LZespolona &Lz)
 {
-   istream& getline(istream& is, string& str, char delim);
-
-   
+    return StrmWy << "(" << Lz.re << std::showpos << Lz.im << std::noshowpos << "i)";
 }
+/*
+* Przeciazenie operatora <<
+* Realizuje wyswietlenie wyrazenia liczb zespolonych
+* Argumenty:
+* WyrZ - wyrazenie liczb zespolonych ktore ma byc wyswietlone
+* TabSymOp - tablica znakow operatorow arytmetycznych sluzaca do ich wyswietlania
+* Zwraca:
+*   Wyswietlone wyrazenie liczb zespolonych w terminalu
+*/
+std::ostream& operator << (std::ostream &StrmWy, const WyrazenieZesp &WyrZ)
+{
+    const char TabSymOp[] ="+-*/";
+    return StrmWy << "Podaj wynik operacji:\t" << WyrZ.Arg1 << TabSymOp[WyrZ.Op] << WyrZ.Arg2 << "=" << std::endl;
+}
+/*
+* Przeciazenie operatora >>
+* Realizuje wczytanie liczby zespolonej
+* Argumenty:
+* Lz - zmienna do ktorej wczytywana jest liczba zespolona
+* Zwraca:
+*   Zmienna z wczytana liczba zespolona
+*/
+std::istream& operator >> (std::istream &StrmWe, LZespolona &Lz)
+{
+    char nawias, litera;
 
-
-    
+        StrmWe >> nawias;
+        if(nawias == '(')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        StrmWe >> Lz.re;
+        if(StrmWe.fail())
+            {return StrmWe;}
+        StrmWe >> Lz.im;
+        if(StrmWe.fail())
+            {return StrmWe;}
+        StrmWe >> litera;
+        if(litera != 'i')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        if(nawias != ')')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        
+        return StrmWe;
+        
+}
