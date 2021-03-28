@@ -19,8 +19,8 @@ TEST_CASE("Test LZespolona dzielenie przez skalar 2") {
     LZespolona x, y;
     double t = 3;
     
-    x.re = 2;
-    x.im = 2;
+    x.re = 3;
+    x.im = 3;
 
     y.re = 1;
     y.im = 1;
@@ -28,6 +28,30 @@ TEST_CASE("Test LZespolona dzielenie przez skalar 2") {
     CHECK(x/t == y);
 }
 
+TEST_CASE("Test LZespolona dzielenie przez skalar 3") {
+    LZespolona x, y;
+    double t = 4;
+    
+    x.re = 5;
+    x.im = -11;
+
+    y.re = 1.25;
+    y.im = -2.75;
+   
+    CHECK(x/t == y);
+}
+TEST_CASE("Test LZespolona dzielenie przez skalar 4") {
+    LZespolona x, y;
+    double t = 3;
+    
+    x.re = 2;
+    x.im = 4;
+
+    y.re = 0.6666;
+    y.im = 1.3333;
+   
+    CHECK(x/t == y);
+}
 TEST_CASE("Test LZespolona dzielenie przez skalar - zero") {
     LZespolona x;
     double t = 0;

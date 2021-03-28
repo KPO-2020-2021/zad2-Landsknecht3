@@ -7,7 +7,7 @@ TBIN=./tests/bin
 FLAGS= -Wall -pedantic -std=c++14 -iquote inc
 
 __start__: ${TRGDIR}/test_arytm_zesp
-	${TRGDIR}/test_arytm_zesp  latwy
+	${TRGDIR}/test_arytm_zesp
 ${TRGDIR}/test_arytm_zesp: ${OBJ} ${OBJ}/main.o ${OBJ}/LZespolona.o\
                      ${OBJ}/WyrazenieZesp.o ${OBJ}/BazaTestu.o ${OBJ}/BazaTestu.o ${OBJ}/Statystyki.o
 	g++ -o ${TRGDIR}/test_arytm_zesp ${OBJ}/main.o ${OBJ}/LZespolona.o\
@@ -39,15 +39,29 @@ ${TBIN}/test_1: ${TBIN} ${OBJ}/LZespolona.o
 ${TBIN}/test_2: ${TBIN} ${OBJ}/LZespolona.o 
 	g++ -o ${TESTS}/bin/test_2 ${FLAGS} -I${TESTS}/doctest ${TESTS}/test2.cpp ${OBJ}/LZespolona.o
 
+${TBIN}/test_3: ${TBIN} ${OBJ}/LZespolona.o 
+	g++ -o ${TESTS}/bin/test_3 ${FLAGS} -I${TESTS}/doctest ${TESTS}/test3.cpp ${OBJ}/LZespolona.o
+
+${TBIN}/test_4: ${TBIN} ${OBJ}/LZespolona.o 
+	g++ -o ${TESTS}/bin/test_4 ${FLAGS} -I${TESTS}/doctest ${TESTS}/test4.cpp ${OBJ}/LZespolona.o
+
+${TBIN}/test_5: ${TBIN} ${OBJ}/LZespolona.o 
+	g++ -o ${TESTS}/bin/test_5 ${FLAGS} -I${TESTS}/doctest ${TESTS}/test5.cpp ${OBJ}/LZespolona.o
+
 
 ${TBIN}:
 	mkdir ${TBIN}
 
-test:  ${TBIN}/test_1 ${TBIN}/test_2
+test:  ${TBIN}/test_1 ${TBIN}/test_2 ${TBIN}/test_3 ${TBIN}/test_4 ${TBIN}/test_5
 	${TBIN}/test_1 
 	${TBIN}/test_2
+	${TBIN}/test_3
+	${TBIN}/test_4
+	${TBIN}/test_5
 run:
 	${TRGDIR}/test_arytm_zesp latwy
 
+run2:
+	${TRGDIR}/test_arytm_zesp trudny
 clean:
 	rm -f ${TRGDIR}/test_arytm_zesp ${OBJ}/* ${TBIN}/*

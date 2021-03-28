@@ -10,5 +10,7 @@
 /*
  * Tu nalezy zdefiniowac funkcje, ktore definiuja model statystyki 
  */
-void statystyka(BazaTestu BT, LZespolona odp, LZespolona wynik);
+int porownanie(int p, LZespolona odp, LZespolona wynik);
+void statystyka(int p, BazaTestu BT);
+
 #endif

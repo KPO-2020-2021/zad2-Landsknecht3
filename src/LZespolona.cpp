@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iostream>
 
-#define MIN_DIFF 0.00001
+#define MIN_DIFF 0.0001
 
 /*!
  * Realizuje porównanie dwoch liczb zespolonych.
@@ -14,17 +14,17 @@
  */
 
 bool  operator == (LZespolona  Skl1,  LZespolona  Skl2){
-  if ((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im))
+  /*if ((Skl1.re == Skl2.re) && (Skl1.im == Skl2.im))
     return true;
   else
-    return false;
+    return false;*/
   //alternatywnie, dla MIN_DIFF i wyników od użytkownika
-  /*
-  if abs(Skl1.re - Skl2.re) <= MIN_DIFF && abs(Skl1.im - Skl2.im) <= MIN_DIFF
-    return true;
+  
+  if (abs(Skl1.re - Skl2.re) <= MIN_DIFF && abs(Skl1.im - Skl2.im) <= MIN_DIFF)
+    {return true;}
   else
-    return false;
-  */
+    {return false;}
+  
 }
 
 /*!
@@ -54,12 +54,9 @@ LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2){
  */
 LZespolona  operator / (LZespolona  Skl1,  double  Skl2){
   LZespolona  Wynik;
-
   if(Skl2==0)
   {
-    std::cerr << "Niepoprawne dzialanie, dzielenie przez zero";
-    Wynik.re = Wynik.im = 0;
-    return Wynik;
+    throw std::runtime_error("Blad matematyczny: Nie mozna dzielic przez zero");
   }
   Wynik.re = Skl1.re / Skl2;
   Wynik.im = Skl1.im / Skl2;
@@ -135,9 +132,7 @@ LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2)
   LZespolona  Wynik;
   if(Skl2.re==0 && Skl2.im==0)
   {
-    std::cerr << "Niepoprawne dzialanie dzielenie przez zero";
-    Wynik.re=Wynik.im=0;
-    return Wynik;
+    throw std::runtime_error("Blad matematyczny: Nie mozna dzielic przez zero");
   }
   Sprzezenie (Skl2);
   Wynik.re = (Skl1.re * Skl2.re - Skl1.im * Sprzezenie(Skl2)) / Modul2(Skl2) ;

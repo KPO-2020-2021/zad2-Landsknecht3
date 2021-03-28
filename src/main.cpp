@@ -6,7 +6,7 @@
 
 
 
-
+int p;
 
 int main(int argc, char **argv)
 {
@@ -35,6 +35,7 @@ int main(int argc, char **argv)
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
   
+  
   while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) 
   {
     LZespolona odp;
@@ -51,31 +52,17 @@ int main(int argc, char **argv)
         std::cout << std::endl;
       }
       else
-      {
-        break;
-      }
+      {break;}
     }
     LZespolona wynik = Oblicz(WyrZ_PytanieTestowe);
-    if(odp == wynik)
-    {
-      std::cout << "Poprawna odpowiedz" << std::endl;
-    }
-    else
-    {
-      std::cout << "Niepoprawna odpowiedz. Poprawna to:" << wynik << std::endl;
-    }
-    statystyka(BazaT, odp, wynik);
+    p=porownanie(p, odp, wynik);
+    
   }
 
   
   std::cout << std::endl;
   std::cout << " Koniec testu" << std::endl;
   std::cout << std::endl;
+  statystyka(p, BazaT);
 
 }
-/*LZespolona odp;
-    std::cout << "Twoja odpowiedz:";
-    std::cin >> odp;
-    std::cout << std::endl;
-    std::cout << odp;
-    std::cout << std::endl;*/
