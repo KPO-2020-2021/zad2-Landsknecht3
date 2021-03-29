@@ -4,6 +4,8 @@
 #include "WyrazenieZesp.hh"
 #include "Statystyki.hh"
 #include "BazaTestu.hh"
+#define PI 3.14
+#define MIN_DIFF 0.0001
 
 
 TEST_CASE("Test LZespolona statystyka 1") {
@@ -46,5 +48,30 @@ TEST_CASE("Test LZespolona statystyka 1") {
     p = porownanie(p, z, y);
 /* Maja byc 3 dobre odpowiedzi jedna zla*/
 statystyka(p, BazaT);
+CHECK(p == 3);
+}
+TEST_CASE("Test LZespolona argument")
+{
+  LZespolona z;
+  z.re = 0; z.im = 0;
+  WARN_THROWS(arg(z));
+}
+TEST_CASE("Test LZespolona argument")
+{
+  LZespolona z;
+  z.re = 2; z.im = 3;
+  CHECK(abs(arg(z)-0.9827) <= MIN_DIFF);
+}
+TEST_CASE("Test LZespolona argument")
+{
+  LZespolona z;
+  z.re = -2; z.im = 3;
+  CHECK(abs(arg(z)-6.2815) <= MIN_DIFF);
+}
+TEST_CASE("Test LZespolona argument")
+{
+  LZespolona z;
+  z.re = -2; z.im = -3;
+  CHECK(abs(arg(z)-0.9812) <= MIN_DIFF);
 }
 

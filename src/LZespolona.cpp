@@ -1,8 +1,10 @@
 #include "LZespolona.hh"
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
 #define MIN_DIFF 0.0001
+#define PI 3.14
 
 /*!
  * Realizuje porównanie dwoch liczb zespolonych.
@@ -140,4 +142,35 @@ LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2)
   Wynik.re = (Skl1.re * Skl2.re - Skl1.im * Skl2.im) / Modul2(Skl2) ;
   Wynik.im = (Skl1.re * Skl2.im + Skl2.re * Skl1.im) / Modul2(Skl2) ;
   return Wynik;
+}
+LZespolona operator += (LZespolona &Skl1, LZespolona &Skl2)
+{
+  LZespolona wynik;
+  wynik = Skl1 + Skl2;
+  return wynik;
+}
+LZespolona operator /= (LZespolona &Skl1, LZespolona &Skl2)
+{
+  LZespolona wynik;
+  wynik = Skl1 / Skl2;
+  return wynik;
+}
+double arg(LZespolona z)
+{
+  double alfa;
+  if(z.re == 0)
+  {
+    if(z.im > 0)
+    {alfa = PI/2;}
+    if(z.im < 0)
+    {alfa = -PI/2;}
+    if(z.im == 0)
+    {throw std::runtime_error("Argument jest nieokreslony");}
+  }
+  if(z.re > 0)
+  {alfa = atan2(z.im, z.re);}
+  if(z.re < 0)
+  {alfa = atan2(z.im, z.re)+ PI;}
+  
+  return alfa;
 }

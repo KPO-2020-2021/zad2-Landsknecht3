@@ -91,7 +91,7 @@ std::ostream& operator << (std::ostream &StrmWy, const LZespolona &Lz)
 std::ostream& operator << (std::ostream &StrmWy, const WyrazenieZesp &WyrZ)
 {
     const char TabSymOp[] ="+-*/";
-    return StrmWy << "Podaj wynik operacji:\t" << WyrZ.Arg1 << TabSymOp[WyrZ.Op] << WyrZ.Arg2 << "=" << std::endl;
+    return StrmWy << WyrZ.Arg1 << TabSymOp[WyrZ.Op] << WyrZ.Arg2 << "=" << std::endl;
 }
 /*
 * Przeciazenie operatora >>
@@ -119,6 +119,50 @@ std::istream& operator >> (std::istream &StrmWe, LZespolona &Lz)
         StrmWe >> nawias2;
         if(nawias2 != ')')
             {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        return StrmWe;
+        
+}
+std::istream& operator >> (std::istream &StrmWe, WyrazenieZesp &WLz)
+{
+    char nawias, litera, nawias2, znak;
+        StrmWe >> nawias;
+        if(nawias != '(')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        StrmWe >> WLz.Arg1.re;
+        if(StrmWe.fail())
+            { return StrmWe;}
+        StrmWe >> WLz.Arg1.im;
+        if(StrmWe.fail())
+            {return StrmWe;}
+        StrmWe >> litera;
+        if(litera != 'i')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        StrmWe >> nawias2;
+        if(nawias2 != ')')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+
+        StrmWe >> znak;
+        if (znak != '+' && znak != '-' && znak != '*' && znak != '/')
+        {
+            StrmWe.setstate(std::_S_failbit); return StrmWe;
+        }
+        znak >> WLz.Op;
+        StrmWe >> nawias;
+        if(nawias != '(')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        StrmWe >> WLz.Arg2.re;
+        if(StrmWe.fail())
+            { return StrmWe;}
+        StrmWe >> WLz.Arg2.im;
+        if(StrmWe.fail())
+            {return StrmWe;}
+        StrmWe >> litera;
+        if(litera != 'i')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+        StrmWe >> nawias2;
+        if(nawias2 != ')')
+            {StrmWe.setstate(std::_S_failbit);return StrmWe;}
+
         return StrmWe;
         
 }
