@@ -6,7 +6,7 @@
 
 
 
-int p;
+int p=0;
 
 int main(int argc, char **argv)
 {

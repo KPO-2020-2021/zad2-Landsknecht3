@@ -101,10 +101,12 @@ LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2)
  * Zwraca:
  *    Sprzezona liczbe zespolona.
  */
-double Sprzezenie (LZespolona Skl2)
-{
-  Skl2.im = (-1) * Skl2.im;
-  return Skl2.im;
+LZespolona Sprzezenie (LZespolona Skl2)
+{ 
+  if(Skl2.im == 0.0)
+  {return Skl2;}
+  Skl2.im = -Skl2.im;
+  return Skl2;
 }
 /*!
  * Realizuje podniesienie do kwadratu modulu liczby zespolonej.
@@ -134,8 +136,8 @@ LZespolona  operator / (LZespolona  Skl1,  LZespolona  Skl2)
   {
     throw std::runtime_error("Blad matematyczny: Nie mozna dzielic przez zero");
   }
-  Sprzezenie (Skl2);
-  Wynik.re = (Skl1.re * Skl2.re - Skl1.im * Sprzezenie(Skl2)) / Modul2(Skl2) ;
-  Wynik.im = (Skl1.re * Sprzezenie(Skl2) + Skl2.re * Skl1.im) / Modul2(Skl2) ;
+  Skl2 = Sprzezenie (Skl2);
+  Wynik.re = (Skl1.re * Skl2.re - Skl1.im * Skl2.im) / Modul2(Skl2) ;
+  Wynik.im = (Skl1.re * Skl2.im + Skl2.re * Skl1.im) / Modul2(Skl2) ;
   return Wynik;
 }

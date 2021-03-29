@@ -49,5 +49,6 @@ void statystyka(int p, BazaTestu BT)
     std::cout << "Ilosc poprawnych odpowiedzi:" << p << std::endl;
     std::cout << "Ilosc niepoprawnych odpowiedzi:" << BT.IloscPytan-p << std::endl;
     std::cout << "Wynik procentowy poprawnych odpowiedzi:" << 100*p/BT.IloscPytan << "%" << std::endl;
+    std::cout << "Wynik procentowy niepoprawnych odpowiedzi:" << 100*(BT.IloscPytan-p)/BT.IloscPytan << "%" << std::endl;
     
 }

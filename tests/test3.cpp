@@ -47,20 +47,6 @@ TEST_CASE("Test LZespolona mnozenie liczb zespolonych 3") {
    
     CHECK(x*y == z);
 }
-TEST_CASE("Test LZespolona mnozenie liczb zespolonych 4") {
-    LZespolona x, y, z;
-    
-    x.re = (2.0/5.0);
-    x.im = (-3.0/2.0);
-
-    y.re = (4.0/7.0);
-    y.im = (9.0/11.0);
-
-    z.re = 1.4558;
-    z.im = -0.5298;
-   
-    CHECK(x*y == z);
-}
 TEST_CASE("Test LZespolona mnozenie liczb zespolonych 5") {
     LZespolona x, y, z;
     
@@ -72,6 +58,62 @@ TEST_CASE("Test LZespolona mnozenie liczb zespolonych 5") {
 
     z.re = 34.324;
     z.im = -1.852;
+   
+    CHECK(x*y == z);
+}
+TEST_CASE("Test LZespolona mnozenie liczb zespolonych 6") {
+    LZespolona x, y, z;
+    
+    x.re = 1.8;
+    x.im = -3.4;
+
+    y.re = 0;
+    y.im = 0;
+
+    z.re = 0;
+    z.im = 0;
+   
+    CHECK(x*y == z);
+}
+TEST_CASE("Test LZespolona mnozenie liczb zespolonych 7") {
+    LZespolona x, y, z;
+    
+    x.re = 1.8;
+    x.im = -3.4;
+
+    y.re = 1;
+    y.im = 0;
+
+    z.re = 1.8;
+    z.im = -3.4;
+   
+    CHECK(x*y == z);
+}
+TEST_CASE("Test LZespolona mnozenie liczb zespolonych 8") {
+    LZespolona x, y, z;
+    
+    x.re = 1.8;
+    x.im = -3.4;
+
+    y.re = 0;
+    y.im = 1;
+
+    z.re = 3.4;
+    z.im = 1.8;
+   
+    CHECK(x*y == z);
+}
+TEST_CASE("Test LZespolona mnozenie liczb zespolonych 9") {
+    LZespolona x, y, z;
+    
+    x.re = 1.8;
+    x.im = -3.4;
+
+    y.re = 1;
+    y.im = 1;
+
+    z.re = 5.2;
+    z.im = -1.6;
    
     CHECK(x*y == z);
 }
