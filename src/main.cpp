@@ -34,16 +34,8 @@ int main(int argc, char **argv)
   std::cout << std::endl;
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
-  LZespolona z, x, y, o;
-  z.re = 2; z.im = 3;
-  y.re = -2; z.im =3;
-  o.re = -2; o.im = -3;
 
-  std::cout << arg(z) << std::endl;
-  std::cout << arg(x) << std::endl;
-  std::cout << arg(y) << std::endl;
-  std::cout << arg(o) << std::endl;
-  /*while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) 
+  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) 
   {
     LZespolona odp;
     std::cout << "Podaj wynik operacji:\t";
@@ -71,6 +63,6 @@ int main(int argc, char **argv)
   std::cout << std::endl;
   std::cout << " Koniec testu" << std::endl;
   std::cout << std::endl;
-  statystyka(p, BazaT);*/
+  statystyka(p, BazaT);
 
 }
